@@ -19,7 +19,7 @@ filetype plugin on			"filetype detection on
 "this will change the layout of line numbers in a way that you can use
 "10j or 5k to go up or down the list
 set number relativenumber
-
+set nocompatible			"discard old vi version setting
 set showmode				"Show current mode in status line
 "Changing built-in colorscheme
 colorscheme pablo
@@ -93,3 +93,44 @@ function! HasPaste()
     endif
     return ''
 endfunction
+
+
+
+
+
+
+
+" ################################################################
+" ####### How to do 90% of what plugins do (with just VIM) #######
+" ################################################################
+"
+" =====>  ### File Finding ###
+" Search down into subfolders and provide tab-completion for all file-related
+" tasks
+"
+" set is a command that changes a built-in configuration variables such as
+" path, += means appending & ** means seach recursively in directories
+set path+=**			"find any files by :find file_name
+
+" Display all matching files when we tab complete
+set wildmenu
+" Now we can hit tab to :find by partial match and use * to make it fuzzy
+" we can also :b to autocomplete any open buffer
+"
+"
+" =====> ### Tag Jumping ###
+"
+"
+" ### Autocomplete ###
+"
+"
+" ### File Browsing ###
+"
+"
+" #### Snippets ####
+"
+"
+" ### Build Integration ###
+"
+"
+" ### Plugins to use ###
