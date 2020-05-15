@@ -15,10 +15,15 @@ syntax on					"Syntax highlight enabled
 set number					"Show line number
 set clipboard=unnamed   	"normal OS clipboard interaction
 inoremap jj <Esc>			"map escape key to jj
-
+filetype plugin on			"filetype detection on
 "this will change the layout of line numbers in a way that you can use
 "10j or 5k to go up or down the list
 set number relativenumber
+
+set showmode				"Show current mode in status line
+"Changing built-in colorscheme
+colorscheme pablo
+set background=dark
 
 " Enable autocompletion
 set wildmode=longest,list,full
@@ -74,6 +79,8 @@ set nowrap
 " Search cofiguration
 set ignorecase			"Ignore case when searching
 set smartcase
+
+"Type :noh to turn off temporarily
 set hlsearch			"Highlight search results
 set incsearch			"Make search act like search in browsers
 
