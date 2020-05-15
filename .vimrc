@@ -122,10 +122,22 @@ set wildmenu
 "
 "
 " ### Autocomplete ###
-"
+" Autocomplete is already enabled in VIM and can be used by following commands
+" and items can be navigated using ^n and ^p to go to next and previous values
 "
 " ### File Browsing ###
-"
+" Tweaks for browsing
+let g:netrw_banner=0			"diable annoying banner
+let g:netrw_browse_split=4		"open in prior windows
+let g:netrw_altv=1				"open splits to the right
+let g:netrw_liststyle=3			"tree views
+let g:netrw_list_hide=netrw_gitignore#Hide()
+let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+
+"Now We Can:
+" - :edit a folder to open a file browser
+" - <CR>/v/t to open in an h-split/v-split/tab
+" - check |netrw-browse-maps| for more mapping
 "
 " #### Snippets ####
 "
