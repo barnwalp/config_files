@@ -11,14 +11,24 @@
 
 """""""""""""""""""""""""BASIC VIMRC SETTINGS"""""""""""""""""""""""
 
-syntax on				"Syntax highlight enabled
-set number				"Show line number
-set clipboard=unnamed   "normal OS clipboard interaction
-inoremap jj <Esc>		"map escape key to jj		
+syntax on					"Syntax highlight enabled
+set number					"Show line number
+set clipboard=unnamed   	"normal OS clipboard interaction
+inoremap jj <Esc>			"map escape key to jj
+
+"this will change the layout of line numbers in a way that you can use
+"10j or 5k to go up or down the list
+set number relativenumber
+
+" Enable autocompletion
+set wildmode=longest,list,full
 
 "With a map leader it is possible to do extra key combinations like <leader>w
 "saves the current file
 let mapleader = " "
+
+"Splits open at the bottom and right, which is non-retarded, unlike vim
+set splitbelow splitright
 
 " Fast Saving
 nmap <leader>w :w!<cr>
@@ -29,6 +39,9 @@ set ruler
 " No annoying sound on errors
 set noerrorbells
 set novisualbell
+
+" automatically deletes all trailing whitespaces on save
+autocmd BufWritePre * %s/\s\+$//e
 
 " 1 tab = 4 spaces
 set shiftwidth=4
@@ -51,10 +64,10 @@ map  <silent> <leader><cr> :noh<cr>
 "  Status Line
 set laststatus=2
 set cmdheight=2
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c 
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
 
 " Indenting
-set ai 
+set ai
 set si
 set nowrap
 
