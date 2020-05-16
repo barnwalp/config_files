@@ -1,10 +1,19 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""VIMRC FILE"""""""""""""""""""""""""""
+" ###################################################################
+" #############################VIMRC FILE############################
+" ###################################################################
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""VIM PLUGINS""""""""""""""""""""""""""""
+call plug#begin('~/.vim/plugged')
 
+Plug 'morhetz/gruvbox'
 
-""""""""""""""""""""""""""""VIM PLUGINS"""""""""""""""""""""""""""""
+call plug#end()
+
+"Plugins based settings
+
+"Changing built-in colorscheme with gruvbox
+colorscheme gruvbox
+set background=dark
 
 """""""""""""""""""""""""END OF VIM PLUGINS"""""""""""""""""""""""""
 
@@ -21,9 +30,6 @@ filetype plugin on			"filetype detection on
 set number relativenumber
 set nocompatible			"discard old vi version setting
 set showmode				"Show current mode in status line
-"Changing built-in colorscheme
-colorscheme pablo
-set background=dark
 
 " Enable autocompletion
 set wildmode=longest,list,full
@@ -44,6 +50,7 @@ set ruler
 " No annoying sound on errors
 set noerrorbells
 set novisualbell
+set belloff=all
 
 " automatically deletes all trailing whitespaces on save
 autocmd BufWritePre * %s/\s\+$//e
