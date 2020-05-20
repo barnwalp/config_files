@@ -5,15 +5,26 @@
 """"""""""""""""""""""""""""""VIM PLUGINS""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
 
-Plug 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox'				"Gruvbox colorscheme plugin
+
+"python-mode plugin
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 
 call plug#end()
 
-"Plugins based settings
+"""""""""""""""""""""""Plugins based settings""""""""""""""""""""""
 
 "Changing built-in colorscheme with gruvbox
 colorscheme gruvbox
 set background=dark
+
+"Python-mode settings
+let g:pymode=1					"turn on the whole plugin
+let g:pymode_run=1				"turn on the run code script
+let g:pymode_run_bind='<leader>r' 	"bind key to run python code
+let g:pymode_lint=1					"turn on code checking
+let g:pymode_lint_on_write=1		"check code on every save
+
 
 """""""""""""""""""""""""END OF VIM PLUGINS"""""""""""""""""""""""""
 
@@ -25,6 +36,7 @@ set number					"Show line number
 set clipboard=unnamed   	"normal OS clipboard interaction
 inoremap jj <Esc>			"map escape key to jj
 filetype plugin on			"filetype detection on
+filetype plugin indent on 	"essential for syntastic
 "this will change the layout of line numbers in a way that you can use
 "10j or 5k to go up or down the list
 set number relativenumber
