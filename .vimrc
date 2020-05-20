@@ -19,12 +19,25 @@ colorscheme gruvbox
 set background=dark
 
 "Python-mode settings
-let g:pymode=1					"turn on the whole plugin
-let g:pymode_run=1				"turn on the run code script
+let g:pymode=1						"turn on the whole plugin
+let g:pymode_run=1					"turn on the run code script
 let g:pymode_run_bind='<leader>r' 	"bind key to run python code
 let g:pymode_lint=1					"turn on code checking
 let g:pymode_lint_on_write=1		"check code on every save
+"let g:pymode_lint_on_fly=0			"check code when editing
+let g:pymode_lint_messages=1		"show error message if cursor placed on error line
 
+"Setup pymode quickfix window
+"let g:pymode_quickfix_minheight=3
+"let g:pymode_quickfix_maxheight=6
+"set pymode preview window height
+"preview window is used to show documentation and output from pymode-run
+let g:pymode_preview_height=&previewheight
+let g:pymode_indent=1				"enable PEP8 compatible python indent
+"pymode can show documentation for current word by pydoc
+"Turn on documentation script
+let g:pymode_doc=1
+let g:pymode_doc_bind='K'			"bind key to show docs for current word
 
 """""""""""""""""""""""""END OF VIM PLUGINS"""""""""""""""""""""""""
 
