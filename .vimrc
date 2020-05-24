@@ -9,7 +9,8 @@ Plug 'morhetz/gruvbox'				"Gruvbox colorscheme plugin
 
 "python-mode plugin
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-
+Plug 'scrooloose/nerdtree'			"Nerdtree plugin
+Plug 'ctrlpvim/ctrlp.vim'			"Ctrl P plugin
 call plug#end()
 
 """""""""""""""""""""""Plugins based settings""""""""""""""""""""""
@@ -17,6 +18,9 @@ call plug#end()
 "Changing built-in colorscheme with gruvbox
 colorscheme gruvbox
 set background=dark
+
+"NERDTree settings
+map <C-n> :NERDTreeToggle<CR> 		"map ctrl+n to toggle nerdtree
 
 "Python-mode settings
 let g:pymode=1						"turn on the whole plugin
@@ -43,6 +47,12 @@ let g:pymode_doc_bind='K'			"bind key to show docs for current word
 
 
 """""""""""""""""""""""""BASIC VIMRC SETTINGS"""""""""""""""""""""""
+
+" set warp as default for quickfix
+augroup quickfix
+	autocmd!
+	autocmd FileType qf setlocal wrap
+augroup END
 
 syntax on					"Syntax highlight enabled
 set number					"Show line number
