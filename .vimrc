@@ -11,6 +11,7 @@ Plug 'morhetz/gruvbox'				"Gruvbox colorscheme plugin
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'scrooloose/nerdtree'			"Nerdtree plugin
 Plug 'ctrlpvim/ctrlp.vim'			"Ctrl P plugin
+Plug 'tpope/vim-surround'			"surround plugin
 call plug#end()
 
 """""""""""""""""""""""Plugins based settings""""""""""""""""""""""
@@ -48,6 +49,8 @@ let g:pymode_doc_bind='K'			"bind key to show docs for current word
 
 """""""""""""""""""""""""BASIC VIMRC SETTINGS"""""""""""""""""""""""
 
+"remove yellow highlights in blank area
+autocmd VimEnter * set t_ut=
 " set warp as default for quickfix
 augroup quickfix
 	autocmd!
