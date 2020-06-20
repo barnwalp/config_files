@@ -34,7 +34,7 @@ let g:pymode_lint_messages=1		"show error message if cursor placed on error line
 
 "Setup pymode quickfix window
 "let g:pymode_quickfix_minheight=3
-"let g:pymode_quickfix_maxheight=6
+"let g:pymode_quickfix_maxheight=5
 "set pymode preview window height
 "preview window is used to show documentation and output from pymode-run
 let g:pymode_preview_height=&previewheight
@@ -43,6 +43,9 @@ let g:pymode_indent=1				"enable PEP8 compatible python indent
 "Turn on documentation script
 let g:pymode_doc=1
 let g:pymode_doc_bind='K'			"bind key to show docs for current word
+
+"ctrl p searches in the directory in which vim was opened
+let g:ctrlp_working_path_mode = 0
 
 """""""""""""""""""""""""END OF VIM PLUGINS"""""""""""""""""""""""""
 
@@ -74,7 +77,7 @@ set wildmode=longest,list,full
 
 "With a map leader it is possible to do extra key combinations like <leader>w
 "saves the current file
-let mapleader = " "
+let mapleader = ","
 
 "Splits open at the bottom and right, which is non-retarded, unlike vim
 set splitbelow splitright
@@ -139,9 +142,9 @@ function! HasPaste()
     return ''
 endfunction
 
-
-
-
+" lines to save text folding:
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview
 
 
 
@@ -169,6 +172,8 @@ set wildmenu
 " ### Autocomplete ###
 " Autocomplete is already enabled in VIM and can be used by following commands
 " and items can be navigated using ^n and ^p to go to next and previous values
+"
+inoremap <leader>n <C-n>
 "
 " ### File Browsing ###
 " Tweaks for browsing
