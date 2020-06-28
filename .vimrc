@@ -11,6 +11,7 @@ Plug 'morhetz/gruvbox'				"Gruvbox colorscheme plugin
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 
 Plug 'valloric/youcompleteme'		"youcompleteme
+Plug 'tpope/vim-fugitive'			"fugitive
 Plug 'scrooloose/nerdtree'			"Nerdtree plugin
 Plug 'ctrlpvim/ctrlp.vim'			"Ctrl P plugin
 Plug 'tpope/vim-surround'			"surround plugin
