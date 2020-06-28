@@ -9,12 +9,23 @@ Plug 'morhetz/gruvbox'				"Gruvbox colorscheme plugin
 
 "python-mode plugin
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+
+Plug 'valloric/youcompleteme'		"youcompleteme
 Plug 'scrooloose/nerdtree'			"Nerdtree plugin
 Plug 'ctrlpvim/ctrlp.vim'			"Ctrl P plugin
 Plug 'tpope/vim-surround'			"surround plugin
 call plug#end()
 
 """""""""""""""""""""""Plugins based settings""""""""""""""""""""""
+"you complete me settings
+
+"To use youcompleteme, it need to be compiled with these 3 steps
+"sudo apt install build-essential cmake vim python3-dev
+"cd ~/.vim/bundle/youcompleteme
+"python3 install.py --all
+
+let g:ycm_server_keep_logfiles = 1
+let g:ycm_server_log_level = 'debug'
 
 "Changing built-in colorscheme with gruvbox
 colorscheme gruvbox
