@@ -158,7 +158,23 @@ endfunction
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview
 
+" Script to close all active windows except active window for quickfix
+function! CloseAllWindowsButCurrent()
+	let tabnr= tabpagenr()
+	let tabinfo=gettabinfo(tabnr)
+	let windows=tabinfo[0]['windows']
 
+	for winid in windows
+		let curwin=winnr() "could change
+		let winnr=win_id2win(winid)
+		if winnr!=curwin
+			execute ':'.winnr.'q!'
+		endif
+	endfor
+endfunction
+
+" Shortcut for closing all inactive windows in the current tab
+nmap <leader>c :call CloseAllWindowsButCurrent()<CR>
 
 " ################################################################
 " ####### How to do 90% of what plugins do (with just VIM) #######
@@ -176,35 +192,3 @@ set path+=**			"find any files by :find file_name
 set wildmenu
 " Now we can hit tab to :find by partial match and use * to make it fuzzy
 " we can also :b to autocomplete any open buffer
-"
-"
-" =====> ### Tag Jumping ###
-"
-"
-" ### Autocomplete ###
-" Autocomplete is already enabled in VIM and can be used by following commands
-" and items can be navigated using ^n and ^p to go to next and previous values
-"
-inoremap <leader>n <C-n>
-"
-" ### File Browsing ###
-" Tweaks for browsing
-let g:netrw_banner=0			"diable annoying banner
-let g:netrw_browse_split=4		"open in prior windows
-let g:netrw_altv=1				"open splits to the right
-let g:netrw_liststyle=3			"tree views
-let g:netrw_list_hide=netrw_gitignore#Hide()
-let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
-
-"Now We Can:
-" - :edit a folder to open a file browser
-" - <CR>/v/t to open in an h-split/v-split/tab
-" - check |netrw-browse-maps| for more mapping
-"
-" #### Snippets ####
-"
-"
-" ### Build Integration ###
-"
-"
-" ### Plugins to use ###
