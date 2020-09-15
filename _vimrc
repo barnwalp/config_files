@@ -15,15 +15,9 @@ Plug 'skywind3000/asyncrun.vim'				"asynrun.vim
 call plug#end()
 
 """""""""""""""""""""""Plugins based settings""""""""""""""""""""""
-"you complete me settings
 
-"To use youcompleteme, it need to be compiled with these 3 steps
-"1. sudo apt install build-essential cmake vim python3-dev
-"2. cd ~/.vim/plugged/youcompleteme
-"3. python3 install.py --all
-
-"let g:ycm_server_keep_logfiles = 1
-"let g:ycm_server_log_level = 'debug'
+"Kite plugins settings
+let g:kite_tab_complete=1
 
 "Changing built-in colorscheme with ayu
 set termguicolors		"enable true colors support
@@ -33,12 +27,21 @@ colorscheme ayu
 "NERDTree settings
 map <C-n> :NERDTreeToggle<CR> 		"map ctrl+n to toggle nerdtree
 
+"Use <c-j>, <c-k> to navigate the result list
+"Use <c-t>, <c-x> to open the selected entry in a new tab or new split
 "ctrl p searches in the directory in which vim was opened
 let g:ctrlp_working_path_mode = 0
 
 "AsynRun settings
 let g:asyncrun_open = 9
 
+"devicon setting
+set encoding=utf-8
+set fileencoding=utf-8
+"set guifont=Hack:h12
+
+"vim-airline setting
+"let g:airline_powerline_fonts = 1
 
 """""""""""""""""""""""""END OF VIM PLUGINS"""""""""""""""""""""""""
 
@@ -77,6 +80,7 @@ let mapleader = ","
 "Splits open at the bottom and right, which is non-retarded, unlike vim
 set splitbelow splitright
 
+"pip3 install flake8
 "Key remaping for flake8
 autocmd FileType python map <buffer> <leader>f :call Flake8()<CR>
 
@@ -88,6 +92,9 @@ nmap <leader>w :w!<cr>
 
 "Fast Exit
 nmap <leader>q :q<cr>
+
+" Disable search highlight when <leader><cr> is pressed
+map  <silent> <leader><cr> :noh<cr>
 
 " Always show current position
 set ruler
@@ -114,9 +121,6 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
-
-" Disable search highlight when <leader><cr> is pressed
-map  <silent> <leader><cr> :noh<cr>
 
 "  Status Line
 set laststatus=2
