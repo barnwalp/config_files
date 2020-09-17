@@ -1,6 +1,16 @@
 " ###################################################################
 " #############################VIMRC FILE############################
 " ###################################################################
+" Force python version in VIM
+if has('python3')
+elif has('python')
+endif
+
+"When VIM is compiled with Python in dynamic mode(+python3/dyn), you can point
+"to the python intertreter you wish to use
+set pyxversion=3
+set pythonthreedll=python38.dll
+set pythonthreehome=C:\Users\panka\AppData\Local\Programs\Python\Python38-32
 
 """"""""""""""""""""""""""""""VIM PLUGINS""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
@@ -12,6 +22,7 @@ Plug 'tpope/vim-surround'					"surround plugin
 Plug 'vim-airline/vim-airline'				"modified statusbar
 Plug 'nvie/vim-flake8'						"vim-flake8
 Plug 'skywind3000/asyncrun.vim'				"asynrun.vim
+Plug 'wmvanvliet/jupyter-vim'				"jupyter-vim
 call plug#end()
 
 """""""""""""""""""""""Plugins based settings""""""""""""""""""""""
@@ -39,9 +50,6 @@ let g:asyncrun_open = 9
 set encoding=utf-8
 set fileencoding=utf-8
 "set guifont=Hack:h12
-
-"vim-airline setting
-"let g:airline_powerline_fonts = 1
 
 """""""""""""""""""""""""END OF VIM PLUGINS"""""""""""""""""""""""""
 
@@ -180,3 +188,11 @@ vmap <C-c> y:new ~/.vimbuffer<CR>VGp:x<CR> \| :!cat ~/.vimbuffer \| clip.exe <CR
 
 " paste from buffer
 map <C-v> :r ~/.vimbuffer<CR>
+
+"Running Current file in jupyter qtconsole
+"nnoremap <leader>t :JupyterRunFile<CR>
+nmap <leader>t :JupyterRunFile<CR>
+
+"Sending selected lines to qtconsole
+vmap <leader>a :JupyterSendRange<CR>
+
