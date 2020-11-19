@@ -23,6 +23,8 @@ Plug 'vim-airline/vim-airline'				"modified statusbar
 Plug 'nvie/vim-flake8'						"vim-flake8
 Plug 'skywind3000/asyncrun.vim'				"asynrun.vim
 Plug 'wmvanvliet/jupyter-vim'				"jupyter-vim
+Plug 'suan/vim-instant-markdown', {'for': 'markdown'}	"vim instant markdown
+Plug 'xuyuanp/nerdtree-git-plugin'			"nerdtree-git support
 call plug#end()
 
 """""""""""""""""""""""Plugins based settings""""""""""""""""""""""
@@ -50,6 +52,27 @@ let g:asyncrun_open = 9
 set encoding=utf-8
 set fileencoding=utf-8
 "set guifont=Hack:h12
+"
+"nerdtree git plugin
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+                \ 'Modified'  :'✹',
+                \ 'Staged'    :'✚',
+                \ 'Untracked' :'✭',
+                \ 'Renamed'   :'➜',
+                \ 'Unmerged'  :'═',
+                \ 'Deleted'   :'✖',
+                \ 'Dirty'     :'✗',
+                \ 'Ignored'   :'☒',
+                \ 'Clean'     :'✔︎',
+                \ 'Unknown'   :'?',
+                \ }
+
+"vim instant markdown settings
+let g:instant_markdown_slow = 1
+let g:instant_markdown_mathjax = 1
+let g:instant_markdown_python = 1
+let g:instant_markdown_browser = "firefox --new-window"
+let g:instant_markdown_port = 8888
 
 """""""""""""""""""""""""END OF VIM PLUGINS"""""""""""""""""""""""""
 
@@ -196,3 +219,4 @@ nmap <leader>t :JupyterRunFile<CR>
 "Sending selected lines to qtconsole
 vmap <leader>a :JupyterSendRange<CR>
 
+let g:instant_markdown_browser = "firefox --new-window"
