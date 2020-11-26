@@ -3,7 +3,7 @@
 " ###################################################################
 " Force python version in VIM
 if has('python3')
-elif has('python')
+elseif has('python')
 endif
 
 "When VIM is compiled with Python in dynamic mode(+python3/dyn), you can point
@@ -17,17 +17,22 @@ call plug#begin('~/.vim/plugged')
 Plug 'ayu-theme/ayu-vim'					"Ayu colorscheme plugin
 Plug 'tpope/vim-fugitive'					"fugitive
 Plug 'scrooloose/nerdtree'					"Nerdtree plugin
-Plug 'ctrlpvim/ctrlp.vim'					"Ctrl P plugin
 Plug 'tpope/vim-surround'					"surround plugin
 Plug 'vim-airline/vim-airline'				"modified statusbar
 Plug 'nvie/vim-flake8'						"vim-flake8
 Plug 'skywind3000/asyncrun.vim'				"asynrun.vim
 Plug 'wmvanvliet/jupyter-vim'				"jupyter-vim
-Plug 'suan/vim-instant-markdown', {'for': 'markdown'}	"vim instant markdown
-Plug 'xuyuanp/nerdtree-git-plugin'			"nerdtree-git support
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }	"fuzzy finder in vim
+Plug 'junegunn/fzf.vim'						"fuzzy finder
+Plug 'karoliskoncevicius/vim-sendtowindow'  "sending code to terminal
+Plug 'rhysd/reply.vim', { 'on': ['Repl', 'ReplAuto'] } "another vim repl
 call plug#end()
 
 """""""""""""""""""""""Plugins based settings""""""""""""""""""""""
+
+"FZF fuzzy finder settings
+map <C-f> <Esc><Esc>:Files!<CR>
+inoremap <C-f> <Esc><Esc>:BLines!<CR>
 
 "Kite plugins settings
 let g:kite_tab_complete=1
@@ -211,12 +216,3 @@ vmap <C-c> y:new ~/.vimbuffer<CR>VGp:x<CR> \| :!cat ~/.vimbuffer \| clip.exe <CR
 
 " paste from buffer
 map <C-v> :r ~/.vimbuffer<CR>
-
-"Running Current file in jupyter qtconsole
-"nnoremap <leader>t :JupyterRunFile<CR>
-nmap <leader>t :JupyterRunFile<CR>
-
-"Sending selected lines to qtconsole
-vmap <leader>a :JupyterSendRange<CR>
-
-let g:instant_markdown_browser = "firefox --new-window"
