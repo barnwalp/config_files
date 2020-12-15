@@ -1,71 +1,92 @@
 " ###################################################################
 " #############################VIMRC FILE############################
 " ###################################################################
+" Force python version in VIM
+"if has('python3')
+"elseif has('python')
+"endif
+
+"When VIM is compiled with Python in dynamic mode(+python3/dyn), you can point
+"to the python intertreter you wish to use
+"set pyxversion=3
+"set pythonthreedll=python38.dll
+"set pythonthreehome=C:\Users\panka\AppData\Local\Programs\Python\Python38-32
 
 """"""""""""""""""""""""""""""VIM PLUGINS""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
-
-Plug 'morhetz/gruvbox'				"Gruvbox colorscheme plugin
-
-"python-mode plugin
-Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-
-Plug 'valloric/youcompleteme'		"youcompleteme
-Plug 'tpope/vim-fugitive'			"fugitive
-Plug 'scrooloose/nerdtree'			"Nerdtree plugin
-Plug 'ctrlpvim/ctrlp.vim'			"Ctrl P plugin
-Plug 'tpope/vim-surround'			"surround plugin
+Plug 'ayu-theme/ayu-vim'					"Ayu colorscheme plugin
+Plug 'tpope/vim-fugitive'					"fugitive
+Plug 'scrooloose/nerdtree'					"Nerdtree plugin
+Plug 'tpope/vim-surround'					"surround plugin
+Plug 'vim-airline/vim-airline'				"modified statusbar
+Plug 'nvie/vim-flake8'						"vim-flake8
+Plug 'skywind3000/asyncrun.vim'				"asynrun.vim
+Plug 'wmvanvliet/jupyter-vim'				"jupyter-vim
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }	"fuzzy finder in vim
+Plug 'junegunn/fzf.vim'						"fuzzy finder
+Plug 'karoliskoncevicius/vim-sendtowindow'  "sending code to terminal
+Plug 'rhysd/reply.vim', { 'on': ['Repl', 'ReplAuto'] } "another vim repl
 call plug#end()
 
 """""""""""""""""""""""Plugins based settings""""""""""""""""""""""
-"you complete me settings
 
-"To use youcompleteme, it need to be compiled with these 3 steps
-"sudo apt install build-essential cmake vim python3-dev
-"cd ~/.vim/bundle/youcompleteme
-"python3 install.py --all
+"FZF fuzzy finder settings
+map <C-f> <Esc><Esc>:Files!<CR>
+inoremap <C-f> <Esc><Esc>:BLines!<CR>
 
-let g:ycm_server_keep_logfiles = 1
-let g:ycm_server_log_level = 'debug'
+"Kite plugins settings
+let g:kite_tab_complete=1
 
-"Changing built-in colorscheme with gruvbox
-colorscheme gruvbox
-set background=dark
+"Changing built-in colorscheme with ayu
+set termguicolors		"enable true colors support
+let ayucolor="dark"
+colorscheme ayu
 
 "NERDTree settings
 map <C-n> :NERDTreeToggle<CR> 		"map ctrl+n to toggle nerdtree
 
-"Python-mode settings
-let g:pymode=1						"turn on the whole plugin
-let g:pymode_run=1					"turn on the run code script
-let g:pymode_run_bind='<leader>r' 	"bind key to run python code
-let g:pymode_lint=1					"turn on code checking
-let g:pymode_lint_on_write=1		"check code on every save
-"let g:pymode_lint_on_fly=0			"check code when editing
-let g:pymode_lint_messages=1		"show error message if cursor placed on error line
-
-"Setup pymode quickfix window
-"let g:pymode_quickfix_minheight=3
-"let g:pymode_quickfix_maxheight=5
-"set pymode preview window height
-"preview window is used to show documentation and output from pymode-run
-let g:pymode_preview_height=&previewheight
-let g:pymode_indent=1				"enable PEP8 compatible python indent
-"pymode can show documentation for current word by pydoc
-"Turn on documentation script
-let g:pymode_doc=1
-let g:pymode_doc_bind='K'			"bind key to show docs for current word
-
+"Use <c-j>, <c-k> to navigate the result list
+"Use <c-t>, <c-x> to open the selected entry in a new tab or new split
 "ctrl p searches in the directory in which vim was opened
 let g:ctrlp_working_path_mode = 0
+
+"AsynRun settings
+let g:asyncrun_open = 9
+
+"devicon setting
+set encoding=utf-8
+set fileencoding=utf-8
+"set guifont=Hack:h12
+"
+"nerdtree git plugin
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+                \ 'Modified'  :'✹',
+                \ 'Staged'    :'✚',
+                \ 'Untracked' :'✭',
+                \ 'Renamed'   :'➜',
+                \ 'Unmerged'  :'═',
+                \ 'Deleted'   :'✖',
+                \ 'Dirty'     :'✗',
+                \ 'Ignored'   :'☒',
+                \ 'Clean'     :'✔︎',
+                \ 'Unknown'   :'?',
+                \ }
+
+"vim instant markdown settings
+let g:instant_markdown_slow = 1
+let g:instant_markdown_mathjax = 1
+let g:instant_markdown_python = 1
+let g:instant_markdown_browser = "firefox --new-window"
+let g:instant_markdown_port = 8888
 
 """""""""""""""""""""""""END OF VIM PLUGINS"""""""""""""""""""""""""
 
 
-"""""""""""""""""""""""""BASIC VIMRC SETTINGS"""""""""""""""""""""""
+""""""""""""""""""""BASIC VIMRC SETTINGS - START""""""""""""""""""""
 
 "remove yellow highlights in blank area
 autocmd VimEnter * set t_ut=
+
 " set warp as default for quickfix
 augroup quickfix
 	autocmd!
@@ -78,6 +99,7 @@ set clipboard=unnamed   	"normal OS clipboard interaction
 inoremap jj <Esc>			"map escape key to jj
 filetype plugin on			"filetype detection on
 filetype plugin indent on 	"essential for syntastic
+
 "this will change the layout of line numbers in a way that you can use
 "10j or 5k to go up or down the list
 set number relativenumber
@@ -94,8 +116,21 @@ let mapleader = ","
 "Splits open at the bottom and right, which is non-retarded, unlike vim
 set splitbelow splitright
 
+"pip3 install flake8
+"Key remaping for flake8
+autocmd FileType python map <buffer> <leader>f :call Flake8()<CR>
+
+"Key remaping for AsyncRun
+autocmd FileType python map <buffer> <leader>r :AsyncRun python3 %<CR>
+
 " Fast Saving
 nmap <leader>w :w!<cr>
+
+"Fast Exit
+nmap <leader>q :q<cr>
+
+" Disable search highlight when <leader><cr> is pressed
+map  <silent> <leader><cr> :noh<cr>
 
 " Always show current position
 set ruler
@@ -122,9 +157,6 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
-
-" Disable search highlight when <leader><cr> is pressed
-map  <silent> <leader><cr> :noh<cr>
 
 "  Status Line
 set laststatus=2
@@ -154,10 +186,6 @@ function! HasPaste()
     return ''
 endfunction
 
-" lines to save text folding:
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview
-
 " Script to close all active windows except active window for quickfix
 function! CloseAllWindowsButCurrent()
 	let tabnr= tabpagenr()
@@ -176,19 +204,15 @@ endfunction
 " Shortcut for closing all inactive windows in the current tab
 nmap <leader>c :call CloseAllWindowsButCurrent()<CR>
 
-" ################################################################
-" ####### How to do 90% of what plugins do (with just VIM) #######
-" ################################################################
-"
-" =====>  ### File Finding ###
-" Search down into subfolders and provide tab-completion for all file-related
-" tasks
-"
-" set is a command that changes a built-in configuration variables such as
-" path, += means appending & ** means seach recursively in directories
-set path+=**			"find any files by :find file_name
+" toggle set paste in vim to ensure that pasted content are not
+" improperly indented
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+set showmode
 
-" Display all matching files when we tab complete
-set wildmenu
-" Now we can hit tab to :find by partial match and use * to make it fuzzy
-" we can also :b to autocomplete any open buffer
+" copy paste in vim in wsl
+" copy (write) highlighted text to .vimbuffer
+vmap <C-c> y:new ~/.vimbuffer<CR>VGp:x<CR> \| :!cat ~/.vimbuffer \| clip.exe <CR><CR>
+
+" paste from buffer
+map <C-v> :r ~/.vimbuffer<CR>
