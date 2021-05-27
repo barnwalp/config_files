@@ -1,0 +1,37 @@
+{
+    "editor.suggestSelection": "first",
+    "editor.fontSize": 15,
+    "vim.incsearch": true,
+    // using system clipboard
+    "vim.useSystemClipboard": true,
+    "vim.hlsearch": true,
+    // use jj as Escape key in vim
+    "vim.insertModeKeyBindings": [
+        {
+            "before": ["j", "j"],
+            "after": ["<Esc>"]
+        }
+    ],
+    "workbench.colorTheme": "Gruvbox Dark Hard",
+    "tabnine.experimentalAutoImports": true,
+    "workbench.editorAssociations": [
+        {
+            "viewType": "jupyter.notebook.ipynb",
+            "filenamePattern": "*.ipynb"
+        }
+    ],
+    "breadcrumbs.enabled": false,
+    "editor.minimap.enabled": false,
+    // use relative linenumber
+    "editor.lineNumbers": "relative",
+    // Use Tab to select autocomplete text instead of Enter
+    "editor.accpetSuggestionOnEnter": "off",
+    "editor.renderWhitespace": "all",
+    "[json]": {
+
+        "editor.quickSuggestions": {
+            "strings": true
+        },
+        "editor.suggest.insertMode": "replace"
+    }
+}
